@@ -9,8 +9,8 @@ connectDB();
 const app = express();
 const server = http.createServer(app);
 
-// --- YAHAN PAR BADLAAV KIYA GAYA HAI ---
-// Sabhi ko connect hone ki permission de rahe hain
+// --- YAHAN PAR AAKHRI BADLAAV KIYA GAYA HAI ---
+// Hum server ko bata rahe hain ki KISI BHI website se aane wali request ko allow karo.
 app.use(cors()); 
 
 const io = new Server(server, {
@@ -19,7 +19,7 @@ const io = new Server(server, {
     methods: ["GET", "POST", "PUT", "DELETE"]
   }
 });
-// -------------------------------------
+// ---------------------------------------------
 
 app.use(express.json());
 const PORT = process.env.PORT || 3001;
