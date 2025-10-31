@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../api'; // Nayi api file ko import kiya
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
@@ -16,10 +16,11 @@ const Signup = () => {
     setSuccess('');
     try {
       const newUser = { name, email, password };
-      await axios.post('http://localhost:3001/api/users', newUser);
+      // 'axios.post' ki jagah 'api.post' ka istemaal kiya
+      await api.post('/api/users', newUser);
       setSuccess('Registration successful! You can now log in.');
     } catch (err) {
-      setError(err.response.data.msg || 'Registration failed.');
+      setError(err.response?.data?.msg || 'Registration failed.');
     }
   };
 

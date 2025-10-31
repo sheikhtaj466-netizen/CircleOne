@@ -31,8 +31,7 @@ function AppContent() {
             <div className="ms-auto d-flex align-items-center">
               <NavLink className="nav-link mx-2" to="/dashboard" title="Dashboard"><House size={22} /></NavLink>
               <NavLink className="nav-link mx-2" to="/feed" title="Feed">Feed</NavLink>
-              {/* --- YAHAN PAR BADLAAV KIYA GAYA HAI --- */}
-              <NavLink className="nav-link mx-2" to="/chat" title="Wappy">Wappy🍉</NavLink>
+              {/* --- YAHAN PAR BADLAAV KIYA GAYA HAI --- */}                                                                                                         <NavLink className="nav-link mx-2" to="/chat" title="Wappy">Wappy🍉</NavLink>
               {/* ------------------------------------- */}
               <NavLink className="nav-link mx-2" to="/users" title="Find Users"><People size={22} /></NavLink>
               <NavLink className="nav-link mx-2" to="/profile" title="My Profile"><PersonCircle size={22} /></NavLink>
