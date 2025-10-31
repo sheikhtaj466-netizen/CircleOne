@@ -10,28 +10,27 @@ const app = express();
 const server = http.createServer(app);
 
 // --- YAHAN PAR BADLAAV KIYA GAYA HAI ---
-// Humara Vercel ka live URL
-const vercelURL = "https://circle-one-steel.vercel.app";
+// Sabhi ko connect hone ki permission de rahe hain
+app.use(cors()); 
 
-const corsOptions = {
-    origin: ["http://localhost:5173", vercelURL], // Vercel URL add kiya
+const io = new Server(server, {
+  cors: {
+    origin: "*", // Sabhi ko allow karo
     methods: ["GET", "POST", "PUT", "DELETE"]
-};
-
-const io = new Server(server, { cors: corsOptions });
-app.use(cors(corsOptions));
+  }
+});
 // -------------------------------------
 
 app.use(express.json());
-const PORT = process.env.PORT || 3001; // Render ke liye PORT set karna
+const PORT = process.env.PORT || 3001;
 
-// ... (Baaki ka poora server.js code, jaise API Routes aur Socket logic, same rahega) ...
-
-// API Routes
+// API Routes (Same as before)
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 // ... baaki saare routes
+app.use("/api/messages", require("./routes/messages"));
 
-server.listen(PORT, () => { // '0.0.0.0' hata diya, Render ke liye zaroori
+
+server.listen(PORT, () => {
   console.log(`Server chal raha hai port ${PORT} par`);
 });
