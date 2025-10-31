@@ -9,23 +9,18 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (token) {
-      navigate('/dashboard');
-    }
-  }, [token, navigate]);
+  useEffect(() => { if (token) navigate('/dashboard'); }, [token, navigate]);
 
-  const { email, password } = formData;
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async e => {
     e.preventDefault();
     setError('');
     try {
-      const res = await api.post('/api/auth', { email, password });
+      const res = await api.post('/api/auth', { email: formData.email, password: formData.password });
       login(res.data.token);
     } catch (err) {
-      setError(err.response?.data?.msg || 'Login failed! Please check your credentials.');
+      setError(err.response?.data?.msg || 'Login failed!');
     }
   };
 
@@ -40,11 +35,11 @@ const Login = () => {
               <form onSubmit={onSubmit}>
                 <div className="mb-3">
                   <label className="form-label">Email Address</label>
-                  <input type="email" className="form-control" name="email" value={email} onChange={onChange} required />
+                  <input type="email" className="form-control" name="email" value={formData.email} onChange={onChange} required />
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Password</label>
-                  <input type="password" className="form-control" name="password" value={password} onChange={onChange} required />
+                  <input type="password" className="form-control" name="password" value={formData.password} onChange={onChange} required />
                 </div>
                 <div className="d-grid">
                   <button type="submit" className="btn btn-primary">Login</button>
@@ -52,6 +47,8 @@ const Login = () => {
               </form>
               <div className="text-center mt-3">
                 <p>Don't have an account? <Link to="/signup">Signup here</Link></p>
+                {/* --- YAHAN PAR NAYA LINK ADD KIYA GAYA HAI --- */}
+                <Link to="/forgot-password" style={{textDecoration: 'none'}}>Forgot Password?</Link>
               </div>
             </div>
           </div>

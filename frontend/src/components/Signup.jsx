@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../api'; // Nayi api file ko import kiya
+import api from '../api';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
@@ -16,7 +16,6 @@ const Signup = () => {
     setSuccess('');
     try {
       const newUser = { name, email, password };
-      // 'axios.post' ki jagah 'api.post' ka istemaal kiya
       await api.post('/api/users', newUser);
       setSuccess('Registration successful! You can now log in.');
     } catch (err) {
@@ -44,7 +43,15 @@ const Signup = () => {
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Password</label>
-                  <input type="password" className="form-control" name="password" value={password} minLength="6" required />
+                  <input 
+                    type="password" 
+                    className="form-control" 
+                    name="password" 
+                    value={password} 
+                    onChange={onChange}  // YEH LINE MISSING THI
+                    minLength="6" 
+                    required 
+                  />
                 </div>
                 <div className="d-grid">
                   <button type="submit" className="btn btn-primary">Sign Up</button>
